@@ -29,10 +29,16 @@ $teacher3=new Teacher('Андрей','аспирант','');
     // print_r($teachers);
     
     $teachersFile=new TeachersFile();//створюю обект картотеку
+
     $teachersFile->addTeacher($teacher1);//додаю викладачiв в картотеку
     $teachersFile->addTeacher($teacher2);
     $teachersFile->addTeacher($teacher3);
     echo$teachersFile->printFiles();//виведення iнформацii картотеки
+
+    $teachersFile->removeTeacher('Иван','декан');//видалення викладачiв з картотеки
+    $teachersFile->removeTeacher('Александр','профессор');
+    echo$teachersFile->printFiles();//виведення iнформацii картотеки
+
 
     // echo'<pre>';
     // print_r($teachersFile);
