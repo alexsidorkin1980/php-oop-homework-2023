@@ -1,46 +1,43 @@
 <?php
 
-require_once 'classes/Teacher.php';//пiдключаю файли з классами
+require_once 'classes/Teacher.php'; //пiдключаю файли з классами
 require_once 'classes/TeachersFile.php';
 
-$teacher1=new Teacher('Александр','профессор');//створюю обекти
-$teacher2=new Teacher('Иван','декан','философия');
-$teacher3=new Teacher('Андрей','аспирант','');
- 
-    $teachers=array();//додаю обекти в массив
-     array_push($teachers, $teacher1); 
-     array_push($teachers, $teacher2); 
-     array_push($teachers, $teacher3); 
+$teacher = new Teacher('professor-1', 'Георий', 'лаборант'); //створюю обекти
+$teacher1 = new Teacher('professor-2', 'Александр', 'профессор'); //створюю обекти
+$teacher2 = new Teacher('professor-3', 'Иван', 'декан', 'философия');
+$teacher3 = new Teacher('professor-4', 'Андрей', 'аспирант', '');
 
-    foreach ($teachers as $item) {//виводю массив
-        echo $item ->print(). "<br>";
-    }
-//видаляю обекти з массиву
-    unset($teachers[0]);
-    unset($teachers[1]);
+$teachers = array(); //додаю обекти в массив
+array_push($teachers, $teacher1);
+array_push($teachers, $teacher2);
+array_push($teachers, $teacher3);
 
-
-    foreach ($teachers as $item) {
-        echo $item ->print(). "<br>";
-    }
+$teachersFile = new TeachersFile(); //створюю обект картотеку
+$teachersFile->addTeacher($teacher); //додаю викладачiв в картотеку
+$teachersFile->addTeacher($teacher1);
+$teachersFile->addTeacher($teacher2);
+$teachersFile->addTeacher($teacher3);
 
 
-    // echo'<pre>';
-    // print_r($teachers);
-    
-    $teachersFile=new TeachersFile();//створюю обект картотеку
 
-    $teachersFile->addTeacher($teacher1);//додаю викладачiв в картотеку
-    $teachersFile->addTeacher($teacher2);
-    $teachersFile->addTeacher($teacher3);
-    echo$teachersFile->printFiles();//виведення iнформацii картотеки
+// $teachersFile->addArray($teachers); //додаю массив викладачiв в картотеку
 
-    $teachersFile->removeTeacher('Иван','декан');//видалення викладачiв з картотеки
-    $teachersFile->removeTeacher('Александр','профессор');
-    echo$teachersFile->printFiles();//виведення iнформацii картотеки
+//$teachersFile->addTeacher($teacher); //додаю  викладача в картотеку
 
 
-    // echo'<pre>';
-    // print_r($teachersFile);
+//$teachersFile->removeTeacher('Иван','декан');//видалення викладачiв з картотеки по iменi та посадi
 
-    
+//$teachersFile->deleteTeacher(2);//видалення обекту з картотеки по iндексу
+
+// $teachersFile->deleteTeacherKey("professor-2");//видалення за ключем
+
+// echo$teachersFile->getTeacher(3);//виведення обекту з картотеки по iндексу
+
+$teachersFile->setAllPosition("math-professor"); //замiна посади 
+
+// echo'<pre>';
+// print_r($teachersFile);
+
+foreach ($teachersFile->printFiles() as $teach)
+    echo $teach->print(); //виведення iнформацii картотеки
