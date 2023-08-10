@@ -36,6 +36,11 @@ class Teacher
         return $this->subject;
     }
 
+    public function getAttribute(string $attribute){//функцiя динамічного визову поля классу
+
+        return $this->$attribute;
+    }
+
     public function print(): string //функцiя виведення данних обьекта
     {
         return "

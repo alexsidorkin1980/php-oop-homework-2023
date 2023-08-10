@@ -36,6 +36,7 @@ $teachersFile->addTeacher($teacher3);
 
 $teachersFile->setAllPosition("math-professor"); //замiна посади 
 
+echo$teacher->getAttribute('key');
 // echo'<pre>';
 // print_r($teachersFile);
 
